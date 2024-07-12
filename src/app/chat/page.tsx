@@ -48,7 +48,8 @@ export default function Chat() {
           img: state.output?.image,
           sender: "model"
         }
-      ]);;
+      ]);
+      ;
     }
   }, [state])
 
@@ -61,9 +62,8 @@ export default function Chat() {
       <form
           onSubmitCapture={handleAfterSubmit}
           action={formAction}
-          className={"relative flex flex-col justify-end h-full"}
+          className={"relative flex flex-col justify-end h-full pb-[3rem] z-[100]"}
       >
-
 
         {/*chat history section*/}
         <div className="flex flex-col p-6 gap-2.5">
@@ -88,7 +88,7 @@ export default function Chat() {
                     >
                       {isModel && (
                           <Avatar>
-                            <AvatarImage src="image/logo.png" className="p-[0.5px]" />
+                            <AvatarImage src="image/logo.png" className="p-[0.5px]"/>
                             <AvatarFallback>CN</AvatarFallback>
                           </Avatar>
                       )}
@@ -101,7 +101,7 @@ export default function Chat() {
                       </p>
                       {isUser && (
                           <Avatar>
-                            <AvatarImage src="image/logo.png" className="p-[0.5px]" />
+                            <AvatarImage src="image/logo.png" className="p-[0.5px]"/>
                             <AvatarFallback>CN</AvatarFallback>
                           </Avatar>
                       )}
