@@ -1,6 +1,7 @@
 import Image from "next/image";
 import "../../public/scss/home.scss";
 import 'swiper/css';
+import Link from 'next/link'
 // Import Swiper React components
 export default function Home() {
 
@@ -11,7 +12,8 @@ export default function Home() {
           <p className="grayText">Hello</p>
           <p className="bigText">Welcome To</p>
         </div>
-        <img className="logo" src="./image/logo.png" alt="" />
+        <Link href="/chat"><img className="logo" src="./image/logo.png" alt="" /></Link>
+        
       </div>
       <div className="cardHijau">
         <div className="profileCardUser ">
@@ -31,7 +33,7 @@ export default function Home() {
           <div className="profileAtas">
             <div className="profileAtas">
               <img src="./image/calendarIcon.png" alt="" />
-              <p className="text">Rp 100.000</p>
+              <p className="text">W257U</p>
             </div>
             <div className="profileAtas">
               <img src="./image/amount.png" alt="" />
