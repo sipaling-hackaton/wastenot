@@ -7,29 +7,43 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 
+
+interface ChatProps {
+  text: string;
+  index: number;
+  img: string;
+  sender: "user" | "model";
+}
+
 export default function Chat() {
   // @ts-ignore
   const [state, formAction] = useFormState(chatGemini);
-  const [history, setHistory] = useState([{input: "", output: ""}]);
+  const [userHistory, setUserHistory] = useState<ChatProps[]>([{
+    text: "",
+    index: 0,
+    img: "",
+    sender: "user"
+  }])
+
+  const [modelHistory, setModelHistory] = useState<ChatProps[]>([{
+    text: "",
+    index: 0,
+    img: "",
+    sender: "model"
+  }])
+
+  const [history, setHistory] = useState<ChatProps[]>([])
+
+  useEffect(() => {
+
+  }, []);
+
   const [imgURL, setImgUrl] = useState()
   useEffect(() => {
     if (state) {
-      // @ts-ignore
-      console.log(state)
-      setHistory([...history, {
-        input: state.input,
-        output: state.output
-      }])
+
     }
   }, [state])
-  const reader = new FileReader();
-  const [imageState, setImageState] = useState(null);
-  // useEffect(() => {
-  //   if (imageState) {
-  //     // @ts-ignore
-  //     setHistory([...history, imageState])
-  //   }
-  // }, [imageState])
   return (
       <form
           action={formAction}
@@ -42,40 +56,38 @@ export default function Chat() {
               className={"text-2xl font-bold text-center"}
           >
           </h1>
-          {
-            history?.map((item, index) => {
-              if (!item.input) return;
-              return (
-                  <div
-                      className={"flex-col flex gap-2.5 rounded-2xl "}
-                      key={index}
-                  >
+          <div
+              className={"flex-col flex gap-2.5 rounded-2xl "}
+          >
+            {
+              userHistory.map((item, index) => {
+                if (!item.text) return;
+                return (
                     <section
-                        className={"flex flex-row-reverse gap-2.5"}
+                        key={index}
+                        className={"flex flex-row gap-2.5 justify-end"}
                     >
+                      <p
+                          className={"p-3 text-black text-right bg-primaryGrey rounded-r-2xl rounded-t-2xl"}
+                      >
+                        {item.text}
+                      </p>
                       <Avatar>
-                        <AvatarImage src="image/logo.png"/>
+                        <AvatarImage src="image/logo.png"
+                                     className={"p-[0.5px]"}
+                        />
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
-                      <p
-                          className={"p-3 text-right bg-primaryGreen rounded-l-2xl rounded-t-2xl text-white"}
-                      >
-                        {item.input.text}
-                      </p>
-                      <Image
-                          src={
-                            // parse from File to
-                            reader.readAsDataURL(item.input.image)
-                          }
-                          alt={
-                            "image"
-                          }
-                          width={25}
-                          height={25}
-                      />
                     </section>
-
+                )
+              })
+            }
+            {
+              modelHistory.map((item, index) => {
+                if (!item.text) return;
+                return (
                     <section
+                        key={index}
                         className={"flex flex-row gap-2.5 max-w-[75vw]"}
                     >
                       <Avatar>
@@ -87,13 +99,13 @@ export default function Chat() {
                       <p
                           className={"p-3 text-black text-left bg-primaryGrey rounded-l-2xl rounded-t-2xl"}
                       >
-                        {item.output}
+                        {item.text}
                       </p>
                     </section>
-                  </div>
-              )
-            })
-          }
+                )
+              })
+            }
+          </div>
         </div>
 
         {/* input section */}
