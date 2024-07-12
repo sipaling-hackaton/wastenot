@@ -18,13 +18,6 @@ interface ChatProps {
 export default function Chat() {
   // @ts-ignore
   const [state, formAction] = useFormState(chatGemini);
-  const [userHistory, setUserHistory] = useState<ChatProps[]>([{
-    text: "",
-    index: 0,
-    img: "",
-    sender: "user"
-  }])
-
   const [modelHistory, setModelHistory] = useState<ChatProps[]>([{
     text: "",
     index: 0,
@@ -32,23 +25,45 @@ export default function Chat() {
     sender: "model"
   }])
 
-  const [history, setHistory] = useState<ChatProps[]>([])
+  const [history, setHistory] = useState<ChatProps[]>([{
+    text: "",
+    index: 0,
+    img: "",
+    sender: "model"
+  }])
 
-  useEffect(() => {
-
-  }, []);
-
-  const [imgURL, setImgUrl] = useState()
   useEffect(() => {
     if (state) {
-
+      setHistory(prevHistory => [
+        ...prevHistory,
+        {
+          text: state.input?.text,
+          index: 2,
+          img: state.input?.image,
+          sender: "user"
+        },
+        {
+          text: state.output?.text,
+          index: 2,
+          img: state.output?.image,
+          sender: "model"
+        }
+      ]);;
     }
   }, [state])
+
+
+  const handleAfterSubmit = (e: any) => {
+    // reset form
+    e.target.reset();
+  }
   return (
       <form
+          onSubmitCapture={handleAfterSubmit}
           action={formAction}
           className={"relative flex flex-col justify-end h-full"}
       >
+
 
         {/*chat history section*/}
         <div className="flex flex-col p-6 gap-2.5">
@@ -60,51 +75,41 @@ export default function Chat() {
               className={"flex-col flex gap-2.5 rounded-2xl "}
           >
             {
-              userHistory.map((item, index) => {
-                if (!item.text) return;
+              history?.map((item, index) => {
+                if (!item.text) return null;
+
+                const isModel = item.sender === "model";
+                const isUser = item.sender === "user";
+
                 return (
                     <section
                         key={index}
-                        className={"flex flex-row gap-2.5 justify-end"}
+                        className={`flex flex-row gap-2.5 ${isModel ? 'max-w-[75vw]' : 'justify-end'}`}
                     >
+                      {isModel && (
+                          <Avatar>
+                            <AvatarImage src="image/logo.png" className="p-[0.5px]" />
+                            <AvatarFallback>CN</AvatarFallback>
+                          </Avatar>
+                      )}
                       <p
-                          className={"p-3 text-black text-right bg-primaryGrey rounded-r-2xl rounded-t-2xl"}
+                          className={`p-3 text-black ${isModel ? 'text-left' : 'text-right'} bg-primaryGrey rounded-t-2xl ${
+                              isModel ? 'rounded-l-2xl' : 'rounded-r-2xl'
+                          }`}
                       >
                         {item.text}
                       </p>
-                      <Avatar>
-                        <AvatarImage src="image/logo.png"
-                                     className={"p-[0.5px]"}
-                        />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
+                      {isUser && (
+                          <Avatar>
+                            <AvatarImage src="image/logo.png" className="p-[0.5px]" />
+                            <AvatarFallback>CN</AvatarFallback>
+                          </Avatar>
+                      )}
                     </section>
-                )
+                );
               })
             }
-            {
-              modelHistory.map((item, index) => {
-                if (!item.text) return;
-                return (
-                    <section
-                        key={index}
-                        className={"flex flex-row gap-2.5 max-w-[75vw]"}
-                    >
-                      <Avatar>
-                        <AvatarImage src="image/logo.png"
-                                     className={"p-[0.5px]"}
-                        />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <p
-                          className={"p-3 text-black text-left bg-primaryGrey rounded-l-2xl rounded-t-2xl"}
-                      >
-                        {item.text}
-                      </p>
-                    </section>
-                )
-              })
-            }
+
           </div>
         </div>
 
