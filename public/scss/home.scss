@@ -1,0 +1,43 @@
+.logo{
+    width:66px;
+    height:66px;
+
+}
+.profileCard {
+    padding:20px 24px;
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    width:100%;
+}
+
+.nama {
+    color: #0D1B34;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; /* 22px */
+}
+.cardHijau {
+    border-radius: 12px;
+    background: #26B10A;
+    display: flex;
+margin: 20px;
+flex-direction: column;
+align-items: center;
+gap: 16px;
+}
+.hr{
+    // height: 0px;
+    align-self: stretch;
+    stroke-width: 1px;
+    stroke: rgba(255, 255, 255, 0.15);
+}
+.profileAtas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
