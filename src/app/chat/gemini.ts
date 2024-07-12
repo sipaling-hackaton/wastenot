@@ -87,19 +87,23 @@ async function chatGemini(prevState: any, formData: FormData) {
       generationConfig,
     });
   } catch (error) {
+    console.log(error)
     return {
       input: input,
       output: "error, check your network connection"
     }
   }
+  console.log(result)
   return {
     input: {
       text: input,
-      image: image
+      image: image,
+      sender: "user"
     },
     output: {
       text: result.response.text(),
-      image: ""
+      image: "",
+      sender: "model"
     }
   }
 }
