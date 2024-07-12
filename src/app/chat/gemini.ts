@@ -97,7 +97,10 @@ async function chatGemini(prevState: any, formData: FormData) {
       text: input,
       image: image
     },
-    output: result.response.text(),
+    output: {
+      text: result.response.text(),
+      image: ""
+    }
   }
 }
 

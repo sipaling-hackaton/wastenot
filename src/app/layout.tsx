@@ -11,7 +11,7 @@ import { Navbar } from "@/components/ui/navbar";
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "Wastenot",
+  title: "WasteNot",
   description: "An app for helping identify waste from images.",
 };
 
