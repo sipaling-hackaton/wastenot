@@ -4,6 +4,9 @@ import "./globals.css";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
+import {usePathname} from 'next/navigation';
+import { Navbar } from "@/components/ui/navbar";
+
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -18,6 +21,7 @@ export default function RootLayout({
                                        Readonly<{
                                          children: React.ReactNode;
                                        }>) {
+
   return (
       <html lang="en">
       <body
@@ -27,7 +31,7 @@ export default function RootLayout({
           )}
       >
       {children}
-      <section
+      {/* <section
           className={"flex flex-row justify-center w-full p-4 gap-4"}
       >
         <Link
@@ -45,7 +49,13 @@ export default function RootLayout({
         >
           Cart
         </Link>
-      </section>
+      </section> */}
+      <Navbar routes={[{path: "/", name: "Home"},
+        {path: "nearby", name: "Nearby"}, 
+        {path: "nearby/detail", name: "NearbyDetail"}, 
+        {path: "shop", name: "Shop"},
+        {path: "shop/detail", name: "ShopDetail"}]} />
+      
       </body>
       </html>
   );
