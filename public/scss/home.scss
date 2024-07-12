@@ -3,6 +3,25 @@
     height:66px;
 
 }
+.salamContainer {
+    padding-top:20px;
+}
+.grayText {
+    color: #8696BB;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+}
+.bigText{
+    color: #0D1B34;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; /* 22px */
+}
 .profileCard {
     padding:20px 24px;
     display:flex;
@@ -11,26 +30,59 @@
     justify-content: space-between;
     width:100%;
 }
+.profileCardUser {
+    padding:20px 24px;
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    width:100%;
+    border-radius: 24px;
+    gap:16px;
+    background: #26B10A;
+}
 
 .nama {
-    color: #0D1B34;
+    color: #FFF;
     font-family: Poppins;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    line-height: 110%; /* 22px */
+    line-height: 110%; /* 17.6px */
+}
+.pangkat {
+    color: #CBE1FF;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.text {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.namaDanPhoto {
+    display:flex ;
+    gap:12px;
 }
 .cardHijau {
     border-radius: 12px;
-    background: #26B10A;
     display: flex;
-margin: 20px;
-flex-direction: column;
-align-items: center;
-gap: 16px;
+    padding: 20px 20px 20px 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
 }
 .hr{
     // height: 0px;
+    padding-top: 20px;
     align-self: stretch;
     stroke-width: 1px;
     stroke: rgba(255, 255, 255, 0.15);
@@ -39,5 +91,17 @@ gap: 16px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
+}
+.section2 {
+    border-radius: 20px 20px 0px 0px;
+    background: #FFF;
+    width: 100%;
+    // height: 347px;
+    flex-shrink: 0;
+    display : flex;
+    flex-direction: column;
+    gap :20px;
+    padding:8px 24px 20px 24px;
 }
